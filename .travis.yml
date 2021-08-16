@@ -1,0 +1,14 @@
+#tell travis 
+language: generic
+sudo: required
+services:
+  - docker
+
+#run docker dev
+before_install:
+  - docker build -t hsilgnej/docker-rect -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true hsilgnej/docker-rect npm run test
+#tell travis how to run out test suit
+#deploy to aws
